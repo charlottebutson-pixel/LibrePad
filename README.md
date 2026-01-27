@@ -4,6 +4,14 @@
 
 ---
 
+<p align="center">
+	<a href="https://github.com/iiDk-the-actual/LibrePad/releases"><img src="https://img.shields.io/github/v/release/iiDk-the-actual/LibrePad?label=version&style=for-the-badge"></a>
+	<a href="https://github.com/iiDk-the-actual/LibrePad/releases/latest"><img src="https://img.shields.io/github/downloads/iiDk-the-actual/LibrePad/latest/LibrePad.dll?style=for-the-badge"></a>
+	<a href="https://discord.gg/iidk"><img src="https://img.shields.io/discord/1170093288557129748?label=discord&style=for-the-badge&color=blueviolet"></a>
+</p>
+
+---
+
 # Introduction
 
 Librepad is a free, open sourced info and utility tablet for Gorilla Tag. Inspired by other mods, such as [EIOP](https://github.com/Hansolo1000falcon/eiop) and [Sakuraa's Utility Tablet](https://gtagcamera.com), this mod is meant to be a free and backdoorless situation.
