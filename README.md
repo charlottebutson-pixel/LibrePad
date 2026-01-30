@@ -14,7 +14,7 @@
 
 # Introduction
 
-Librepad is a free, open sourced info and utility tablet for Gorilla Tag. Inspired by other mods, such as [EIOP](https://github.com/Hansolo1000falcon/eiop) and [Sakuraa's Utility Tablet](https://gtagcamera.com), this mod is meant to be a free and backdoorless situation.
+LibrePad is a free, open sourced info and utility tablet for Gorilla Tag. Inspired by other mods, such as [EIOP](https://github.com/Hansolo1000falcon/eiop) and [Sakuraa's Utility Tablet](https://gtagcamera.com), this mod is meant to be a free and backdoorless situation.
 
 This mod was created as a solution to everyone's problems. A genre of mod that has been getting popular is the utility tablet genre, where a menu spawns on your hand to complete actions easily. 
 
