@@ -1,10 +1,5 @@
-﻿using ExitGames.Client.Photon;
-using GorillaNetworking;
-using LibrePad.Utilities;
-using Photon.Pun;
-using Photon.Realtime;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace LibrePad.Classes
@@ -66,6 +61,8 @@ namespace LibrePad.Classes
 
             Transform uiTransform = transform.Find("Main");
             ui = uiTransform.gameObject;
+
+            uiTransform.Find("Background/Title").GetComponent<TextMeshPro>().text = Plugin.Outdated ? $"LibrePad\n<color=red>[OUTDATED]</color> {PluginInfo.Version}" : $"LibrePad\n{PluginInfo.Version}";
 
             backgroundMaterial = uiTransform.Find("Background").GetComponent<Renderer>().sharedMaterial;
             buttonMaterial = uiTransform.Find("Sidebar/Room").GetComponent<Renderer>().sharedMaterial;

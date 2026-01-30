@@ -2,7 +2,6 @@
 using HarmonyLib;
 using LibrePad.Classes;
 using LibrePad.Pages;
-using LibrePad.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
