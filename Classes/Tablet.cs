@@ -99,6 +99,7 @@ namespace LibrePad.Classes
         }
 
         private bool previousLeftGrip;
+        private bool previousPeriodKeybind;
         public void Update()
         {
             bool leftGrip = ControllerInputPoller.instance.leftGrab;
@@ -107,6 +108,13 @@ namespace LibrePad.Classes
                 ui.SetActive(!ui.activeSelf);
 
             previousLeftGrip = leftGrip;
+
+            bool pcPeriod = UnityEngine.InputSystem.Keyboard.current.periodKey.isPressed;
+
+            if (pcPeriod && !previousPeriodKeybind)
+                ui.SetActive(!ui.activeSelf);
+
+            previousPeriodKeybind = pcPeriod;
 
             if (GorillaTagger.Instance.myRecorder != null)
                 GorillaTagger.Instance.myRecorder.TransmitEnabled = !muted;
