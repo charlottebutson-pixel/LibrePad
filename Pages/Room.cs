@@ -20,7 +20,7 @@ namespace LibrePad.Pages
             visual = pageTransform.Find("Visual").GetComponent<TextMeshPro>();
             info = pageTransform.Find("Info").GetComponent<TextMeshPro>();
 
-            pageTransform.Find("Disconnect").AddComponent<Classes.Button>().OnClick += () => Disconnect();
+            pageTransform.Find("Disconnect").AddComponent<Classes.Button>().OnClick += () => NetworkSystem.Instance.ReturnToSinglePlayer();
             pageTransform.Find("PublicHop").AddComponent<Classes.Button>().OnClick += () => PublicHop();
             pageTransform.Find("PrivateHop").AddComponent<Classes.Button>().OnClick += () => PrivateHop();
         }
@@ -74,29 +74,14 @@ Public");
             }
         }
 
-        public void Disconnect()
-        {
-            if (NetworkSystem.Instance.InRoom)
-                NetworkSystem.Instance.ReturnToSinglePlayer();
-            else if (!NetworkSystem.Instance.InRoom) { }
-        }
-
         public void PublicHop()
         {
-            if (NetworkSystem.Instance.InRoom)
-                NetworkSystem.Instance.ReturnToSinglePlayer();
-
             GorillaNetworkJoinTrigger trigger = PhotonNetworkController.Instance.currentJoinTrigger ?? GorillaComputer.instance.GetJoinTriggerForZone("forest");
-
-            if (!NetworkSystem.Instance.InRoom) 
-                PhotonNetworkController.Instance.AttemptToJoinPublicRoom(trigger);
+            PhotonNetworkController.Instance.AttemptToJoinPublicRoom(trigger);
         }
 
         public void PrivateHop()
         {
-            if (NetworkSystem.Instance.InRoom)
-                NetworkSystem.Instance.ReturnToSinglePlayer();
-
             string roomName = NetworkSystem.Instance.GetMyNickName().ToUpper();
 
             if (roomName.Length > 6)
@@ -104,8 +89,7 @@ Public");
 
             roomName += Random.Range(0, 9999).ToString().PadLeft(4);
 
-            if (!NetworkSystem.Instance.InRoom)
-                PhotonNetworkController.Instance.AttemptToJoinSpecificRoom(roomName, JoinType.Solo);
+            PhotonNetworkController.Instance.AttemptToJoinSpecificRoom(roomName, JoinType.Solo);
         }
     }
 }
