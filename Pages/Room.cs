@@ -1,9 +1,10 @@
-﻿using GorillaNetworking;
+using GorillaNetworking;
 using LibrePad.Utilities;
 using Photon.Pun;
 using System.Globalization;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace LibrePad.Pages
 {
@@ -19,7 +20,7 @@ namespace LibrePad.Pages
             visual = pageTransform.Find("Visual").GetComponent<TextMeshPro>();
             info = pageTransform.Find("Info").GetComponent<TextMeshPro>();
 
-            pageTransform.Find("Disconnect").AddComponent<Classes.Button>().OnClick += () => NetworkSystem.Instance.ReturnToSinglePlayer();
+            pageTransform.Find("Disconnect").AddComponent<Classes.Button>().OnClick += () => Disconnect();
             pageTransform.Find("PublicHop").AddComponent<Classes.Button>().OnClick += () => PublicHop();
             pageTransform.Find("PrivateHop").AddComponent<Classes.Button>().OnClick += () => PrivateHop();
         }
@@ -73,22 +74,38 @@ Public");
             }
         }
 
+        public void Disconnect()
+        {
+            if (NetworkSystem.Instance.InRoom)
+                NetworkSystem.Instance.ReturnToSinglePlayer();
+            else if (!NetworkSystem.Instance.InRoom) { }
+        }
+
         public void PublicHop()
         {
+            if (NetworkSystem.Instance.InRoom)
+                NetworkSystem.Instance.ReturnToSinglePlayer();
+
             GorillaNetworkJoinTrigger trigger = PhotonNetworkController.Instance.currentJoinTrigger ?? GorillaComputer.instance.GetJoinTriggerForZone("forest");
-            PhotonNetworkController.Instance.AttemptToJoinPublicRoom(trigger);
+
+            if (!NetworkSystem.Instance.InRoom) 
+                PhotonNetworkController.Instance.AttemptToJoinPublicRoom(trigger);
         }
 
         public void PrivateHop()
         {
+            if (NetworkSystem.Instance.InRoom)
+                NetworkSystem.Instance.ReturnToSinglePlayer();
+
             string roomName = NetworkSystem.Instance.GetMyNickName().ToUpper();
 
             if (roomName.Length > 6)
                 roomName = roomName[..6];
 
-            roomName += UnityEngine.Random.Range(0, 9999).ToString().PadLeft(4);
+            roomName += Random.Range(0, 9999).ToString().PadLeft(4);
 
-            PhotonNetworkController.Instance.AttemptToJoinSpecificRoom(roomName, JoinType.Solo);
+            if (!NetworkSystem.Instance.InRoom)
+                PhotonNetworkController.Instance.AttemptToJoinSpecificRoom(roomName, JoinType.Solo);
         }
     }
 }
